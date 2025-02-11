@@ -1,0 +1,12 @@
+apiVersion: 1
+
+datasources:
+  - name: PostgreSQL
+    type: postgres
+    access: proxy
+    url: db:5432
+    database: red_social
+    user: user
+    password: password
+    isDefault: true
+    editable: true
