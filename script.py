@@ -19,7 +19,10 @@ engine = create_engine(DATABASE_URL)
 csv_url = "https://raw.githubusercontent.com/veekun/pokedex/master/pokedex/data/csv/pokemon.csv"
 df = pd.read_csv(csv_url)
 
-# Guardar en la base de datos
-df.to_sql('pokemon', engine, if_exists='replace', index=False)
+# Duplicar los datos
+df_duplicado = pd.concat([df, df], ignore_index=True)
 
-print("✅ Datos cargados en la base de datos")
+# Guardar en la base de datos sin reemplazar la tabla
+df_duplicado.to_sql('pokemon', engine, if_exists='append', index=False)
+
+print("✅ Datos duplicados y cargados en la base de datos")
